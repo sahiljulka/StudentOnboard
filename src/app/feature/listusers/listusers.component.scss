@@ -1,0 +1,13 @@
+.list-actions {
+  display: flex;
+  justify-content: space-between;
+  mat-form-field {
+    margin: 10px;
+  }
+}
+
+.list-users {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}

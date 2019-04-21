@@ -1,0 +1,76 @@
+<form [formGroup]="form" (ngSubmit)="onsubmit()" class="onboard-form">
+  <mat-form-field>
+    <input formControlName="name" matInput placeholder="Student Name" />
+    <mat-error *ngIf="name.invalid && name.touched"
+      >Please enter your name</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Student Type</mat-label>
+    <mat-select
+      [value]="studentCategory.International"
+      (selectionChange)="onCategoryChanged($event.value)"
+      formControlName="category"
+    >
+      <mat-option [value]="studentCategory.International"
+        >International</mat-option
+      >
+      <mat-option [value]="studentCategory.Domestic">Domestic </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      formControlName="dob"
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Date Of Birth"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Father Name" formControlName="fathername" />
+    <mat-error *ngIf="fathername.invalid">Please enter father name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Mother Name" formControlName="mothername" />
+    <mat-error *ngIf="mothername.invalid">Please enter mother name</mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Last Class Score"
+      type="number"
+      formControlName="lastclassscore"
+    />
+    <mat-error *ngIf="lastclassscore.invalid"
+      >Enter value from from 1 to 100</mat-error
+    >
+  </mat-form-field>
+  <ng-container>
+    <mat-label>
+      Documents (All documents marked with * are necessary)</mat-label
+    >
+    <div class="docs" formArrayName="documentslist">
+      <mat-checkbox
+        class="doc-item"
+        *ngFor="let doc of form.controls.documentslist.controls; let i = index"
+        [formControlName]="i"
+        >{{ documents[i].value }}
+        <span *ngIf="documents[i].isMandatory" class="mandatory">
+          *</span
+        ></mat-checkbox
+      >
+    </div>
+  </ng-container>
+
+  <button
+    [disabled]="form.invalid"
+    type="submit"
+    mat-raised-button
+    color="primary"
+  >
+    {{ !student || editFlag ? "OnBoard" : "Close" }}
+  </button>
+</form>

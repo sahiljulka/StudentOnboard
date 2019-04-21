@@ -1,0 +1,15 @@
+.toolbar {
+  display: flex;
+  position: fixed;
+  top: 0%;
+  height: 7%;
+  div {
+    flex: 9;
+  }
+  div:hover {
+    cursor: pointer;
+  }
+  button {
+    flex: 1;
+  }
+}

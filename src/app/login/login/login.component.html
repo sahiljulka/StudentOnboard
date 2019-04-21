@@ -1,0 +1,23 @@
+<content>
+  <form class="login-form" [formGroup]="form" (ngSubmit)="onsubmit()">
+    <div class="input-values">
+      <mat-form-field>
+        <input matInput placeholder="UserName" formControlName="username" />
+        <mat-error *ngIf="username.invalid">Username is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input
+          type="password"
+          matInput
+          placeholder="Password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="password.invalid">Password is required</mat-error>
+      </mat-form-field>
+    </div>
+    <button [disabled]="form.invalid" type="submit" mat-button>
+      Login
+    </button>
+  </form>
+</content>

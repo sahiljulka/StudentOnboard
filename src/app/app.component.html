@@ -1,0 +1,12 @@
+<mat-toolbar class="toolbar">
+  <div>
+    Student Onboarding System
+  </div>
+  <mat-form-field *ngIf="isLoggedIn">
+    <mat-label>{{ username }}</mat-label>
+    <mat-select>
+      <mat-option [value]="Logout" (click)="logout()">Logout </mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-toolbar>
+<router-outlet></router-outlet>

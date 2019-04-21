@@ -1,0 +1,29 @@
+<div class="list-actions">
+  <mat-form-field>
+    <mat-label>Student Type</mat-label>
+    <mat-select [(ngModel)]="selectedcategory">
+      <mat-option
+        *ngFor="let studenttype of studentTypes"
+        [value]="studenttype.value"
+      >
+        {{ studenttype.viewValue }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Search Student" #search />
+  </mat-form-field>
+</div>
+
+<div class="list-users">
+  <app-childuserlist
+    *ngFor="
+      let student of (students$
+        | async
+        | searchpipe: search.value:selectedcategory)
+    "
+    [student]="student"
+    (deleteStudent)="deleteStudent($event)"
+    (editStudent)="editStudent($event)"
+  ></app-childuserlist>
+</div>
